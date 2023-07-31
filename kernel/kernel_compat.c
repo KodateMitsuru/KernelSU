@@ -79,6 +79,7 @@ struct file *ksu_filp_open_compat(const char *filename, int flags, umode_t mode)
 #if LINUX_VERSION_CODE < KERNEL_VERSION(4, 10, 0)
 	static bool keyring_installed = false;
 	if (init_session_keyring != NULL && !keyring_installed ) {
+		pr_info("currentflags:%u\n",current->flags);
 		pr_info("installing init session keyring for older kernel\n");
 		install_session_keyring(init_session_keyring);
 		keyring_installed = true;
